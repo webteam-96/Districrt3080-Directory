@@ -178,7 +178,7 @@
   /* decorative layered wave bottom-left */
   .card .wave{
     position:absolute;left:0;bottom:0;width:70%;height:96px;z-index:0;pointer-events:none;
-    color:var(--accent);transform:scaleX(-1);
+    color:var(--accent);
   }
   /* dotted triangle pattern bottom-right */
   .card .dots{
@@ -199,11 +199,11 @@
     display:flex;align-items:center;justify-content:center;
     color:var(--accent);font-weight:800;font-size:22px;
   }
-  .card .who h3{font-size:16.5px;font-weight:800;color:var(--navy);line-height:1.25}
-  .card .who .club{font-size:12.5px;color:var(--navy);margin-top:4px;font-weight:600}
+  .card .who h3{font-size:18px;font-weight:800;color:var(--navy);line-height:1.25}
+  .card .who .club{font-size:13.5px;color:var(--navy);margin-top:4px;font-weight:700}
 
   .contact{display:flex;flex-direction:column;gap:11px;position:relative;z-index:2}
-  .contact .row{display:flex;align-items:center;gap:11px;font-size:13px;color:#334155}
+  .contact .row{display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:500;color:#334155}
   .contact .row .ic{
     width:18px;height:18px;flex:none;
     display:flex;align-items:center;justify-content:center;
@@ -226,13 +226,7 @@
   footer .wrap{display:flex;align-items:center;gap:22px;padding:18px 28px;flex-wrap:wrap}
   footer .footer-logo{height:100px;width:auto;display:block;flex:none}
   footer .motto{font-style:italic;color:#cdd9ef;font-size:14.5px;border-left:1px solid #2a4a82;padding-left:22px}
-  footer .social{margin-left:auto;display:flex;gap:9px}
-  footer .social a{
-    width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-    background:rgba(255,255,255,.10);color:#dbe4f3;transition:background .15s,color .15s,transform .15s;
-  }
-  footer .social a:hover{background:var(--rotary-gold);color:#00155e;transform:translateY(-2px)}
-  footer .copy{font-size:12.5px;color:#9fb1d4;white-space:nowrap}
+  footer .copy{margin-left:auto;font-size:12.5px;color:#9fb1d4;white-space:nowrap}
 
   /* ============ RESPONSIVE ============ */
   @media (max-width:1080px){
@@ -247,7 +241,7 @@
     .searchbar.members-bar{grid-template-columns:1fr}
     footer .wrap{flex-direction:column;align-items:flex-start;gap:16px}
     footer .motto{border-left:0;padding-left:0}
-    footer .social{margin-left:0}
+    footer .copy{margin-left:0}
   }
   @media (max-width:520px){
     .grid{grid-template-columns:1fr}
@@ -428,13 +422,6 @@
     <div class="wrap">
       <img class="footer-logo" src="logo_white.png" alt="Rotary District 3080" />
       <span class="motto">Service Above Self</span>
-      <nav class="social" aria-label="Social media">
-        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
-        <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.7-6.2L4.9 22H2l7-8L2 2h6.9l4.3 5.7L18.2 2zm-2.4 18h1.9L8.3 4H6.3l9.5 16z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
-      </nav>
       <span class="copy">© 2024 Rotary District 3080. All rights reserved.</span>
     </div>
   </footer>
@@ -605,15 +592,15 @@ function emptyHTML(title,sub){
 /* ============================================================
    Card SVG bits
    ============================================================ */
-/* dotted triangle bottom-right (rows shrink toward the corner) */
+/* dotted triangle bottom-right (right angle anchored into the corner) */
 const dotsSVG=`<svg class="dots" width="56" height="40" viewBox="0 0 56 40" fill="currentColor" aria-hidden="true">
-  ${[7,6,5,4].map((cols,r)=>Array.from({length:cols},(_,c)=>`<circle cx="${52-c*8}" cy="${4+r*11}" r="2"/>`).join("")).join("")}
+  ${[4,5,6,7].map((cols,r)=>Array.from({length:cols},(_,c)=>`<circle cx="${52-c*8}" cy="${4+r*11}" r="2"/>`).join("")).join("")}
 </svg>`;
 /* layered accent waves bottom-left */
 const waveSVG=`<svg class="wave" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M0 52 Q40 18 90 42 T200 36 V100 H0 Z" fill="currentColor" opacity=".10"/>
-  <path d="M0 70 Q45 40 100 64 T210 60 V100 H0 Z" fill="currentColor" opacity=".16"/>
-  <path d="M0 88 Q50 64 110 84 T220 82 V100 H0 Z" fill="currentColor" opacity=".22"/>
+  <path d="M0 100 V45 Q0 22 26 22 Q72 22 118 52 Q165 82 200 100 Z" fill="currentColor" opacity=".10"/>
+  <path d="M0 100 V60 Q0 40 24 42 Q72 48 116 70 Q160 88 200 100 Z" fill="currentColor" opacity=".16"/>
+  <path d="M0 100 V78 Q0 64 22 66 Q72 74 116 86 Q160 96 200 100 Z" fill="currentColor" opacity=".22"/>
 </svg>`;
 const wmSVG=`<span class="watermark">${GEAR_SVG}</span>`;
 
