@@ -1,0 +1,11 @@
+# Local Claude Code tooling / config
+.claude/
+
+# Design reference mockups (not used by the site)
+design0.png
+design1.png
+footer.png
+logo_blue.png
+logowg.png
+smartsearch_filter.png
+rotary_card_grid.png

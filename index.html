@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Members — Rotary District 3080</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --rotary-blue:#17458f;
+    --rotary-azure:#0a5ec9;
+    --rotary-gold:#f7a81b;
+    --navy:#0b2545;
+    --ink:#1f2a44;
+    --muted:#64748b;
+    --line:#e7ebf3;
+    --bg:#eef2f8;
+    --card:#ffffff;
+    --shadow:0 18px 40px -18px rgba(15,40,90,.28);
+    --shadow-sm:0 8px 22px -12px rgba(15,40,90,.25);
+    --radius:22px;
+
+    /* accent themes */
+    --c-blue:#2563eb;   --c-blue-soft:#e8efff;
+    --c-purple:#7c3aed; --c-purple-soft:#f1eaff;
+    --c-teal:#0d9488;   --c-teal-soft:#e2f6f3;
+    --c-pink:#db2777;   --c-pink-soft:#fdeaf3;
+    --c-green:#16a34a;  --c-green-soft:#e7f7ec;
+    --c-orange:#ea580c; --c-orange-soft:#fdeee3;
+    --c-amber:#d97706;  --c-amber-soft:#fdf3e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+
+  /* ============ HERO ============ */
+  /* Text-free scenic background + HTML title/subtitle/logo overlay,
+     so every element is independently sizable and crisp at any resolution. */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    min-height:340px;
+    padding:22px 0 96px;
+    background:#cfe7f7 url("ChatGPT Image Jun 2, 2026, 02_11_55 PM.png") center bottom/cover no-repeat;
+  }
+  .hero::after{ /* legibility veil */
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,.06) 38%,rgba(255,255,255,.42) 78%,rgba(255,255,255,.72) 100%);
+  }
+  .hero .wrap{position:relative;z-index:3}
+
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .brand-logo{
+    height:clamp(74px,6.6vw,98px);width:auto;display:block;
+    filter:drop-shadow(0 2px 7px rgba(6,16,54,.55)) drop-shadow(0 0 2px rgba(6,16,54,.45));
+  }
+
+  .hero-title{position:relative;text-align:center;margin-top:24px}
+  /* feathered white patch behind the text — opaque core for contrast,
+     soft transparent edges so it blends into the photo (no hard box). */
+  .hero-title::before{
+    content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:min(940px,94%);height:128%;z-index:-1;pointer-events:none;
+    background:radial-gradient(ellipse 58% 56% at center,
+      rgba(255,255,255,.94) 0%, rgba(255,255,255,.90) 42%,
+      rgba(255,255,255,.62) 66%, rgba(255,255,255,0) 86%);
+    filter:blur(6px);
+  }
+  .hero-title h1{
+    font-family:"Cinzel","Playfair Display",Georgia,serif;
+    font-weight:900;
+    font-size:clamp(30px,4.2vw,60px);
+    color:#0B1F6A;
+    letter-spacing:1px;
+    text-shadow:0 1px 1px rgba(255,255,255,.65), 0 0 16px rgba(255,255,255,.55);
+  }
+  .divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 16px}
+  .divider .ln{height:2px;width:74px;background:linear-gradient(90deg,transparent,#F2A100)}
+  .divider .ln.r{background:linear-gradient(90deg,#F2A100,transparent)}
+  .divider .dot{width:9px;height:9px;border-radius:50%;background:#F2A100;box-shadow:0 0 0 4px rgba(242,161,0,.22)}
+  .hero-title p{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:600;
+    color:#0B1F6A;
+    font-size:clamp(17px,1.9vw,28px);
+    letter-spacing:.2px;
+    text-shadow:0 1px 2px rgba(255,255,255,.7);
+  }
+
+  /* ============ SEARCH BAR ============ */
+  .searchbar{
+    position:relative;
+    z-index:4;
+    margin:-58px auto 0;
+    max-width:1120px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    padding:14px;
+    display:grid;
+    grid-template-columns:1fr 230px 250px;
+    gap:12px;
+  }
+  /* members search bar: extra column for the back button */
+  .searchbar.members-bar{grid-template-columns:1fr 200px 220px auto}
+  .searchbar.members-bar .backbtn{margin:0;height:100%}
+  .field{
+    display:flex;align-items:center;gap:10px;
+    background:#f6f8fc;border:1px solid var(--line);
+    border-radius:13px;padding:0 14px;height:54px;
+    transition:border-color .15s,box-shadow .15s,background .15s;
+  }
+  .field:focus-within{border-color:var(--rotary-azure);background:#fff;box-shadow:0 0 0 4px rgba(10,94,201,.12)}
+  .field svg{flex:none;color:var(--muted)}
+  .field input{
+    border:0;outline:0;background:transparent;width:100%;
+    font:inherit;font-size:15px;color:var(--ink);
+  }
+  .field input::placeholder{color:#9aa6bb}
+  .mic{flex:none;background:none;border:0;cursor:pointer;color:var(--rotary-azure);display:flex;padding:4px;border-radius:8px}
+  .mic:hover{background:rgba(10,94,201,.10)}
+  .select-field{position:relative}
+  .select-field select{
+    appearance:none;border:0;outline:0;background:transparent;
+    font:inherit;font-size:15px;color:var(--ink);width:100%;cursor:pointer;
+    padding-right:18px;
+  }
+  .select-field .chev{margin-left:auto;color:var(--muted);pointer-events:none}
+  .field .lead.club{color:var(--rotary-azure)}
+  .field .lead.tag{color:var(--c-purple)}
+
+  /* ============ RESULTS COUNT ============ */
+  .count{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:26px 0 22px;
+  }
+  .count .orn{display:flex;align-items:center;gap:6px;color:var(--rotary-gold)}
+  .count .orn .bar{height:2px;width:46px;background:linear-gradient(90deg,transparent,var(--rotary-gold))}
+  .count .orn.r .bar{background:linear-gradient(90deg,var(--rotary-gold),transparent)}
+  .count .label{font-size:18px;font-weight:700;color:var(--navy)}
+  .count .label b{color:var(--rotary-azure)}
+
+  /* ============ GRID ============ */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+    padding-bottom:10px;
+  }
+
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px 20px 20px;
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+    isolation:isolate;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  /* gradient accent stripe across the top edge */
+  .card::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:6px;z-index:3;
+    background:linear-gradient(90deg,var(--accent),var(--accent-soft));
+  }
+
+  /* decorative layered wave bottom-left */
+  .card .wave{
+    position:absolute;left:0;bottom:0;width:70%;height:96px;z-index:0;pointer-events:none;
+    color:var(--accent);transform:scaleX(-1);
+  }
+  /* dotted triangle pattern bottom-right */
+  .card .dots{
+    position:absolute;right:16px;bottom:14px;z-index:0;opacity:.5;color:var(--accent);pointer-events:none;
+  }
+  /* gearwheel watermark top-right */
+  .card .watermark{
+    position:absolute;right:14px;top:14px;width:34px;height:34px;opacity:.10;color:var(--accent);z-index:0;
+  }
+
+  .card .head{display:flex;align-items:center;gap:14px;position:relative;z-index:2;margin-bottom:15px}
+  .avatar{
+    width:72px;height:72px;border-radius:50%;flex:none;object-fit:cover;
+    border:2px solid #fff;box-shadow:0 0 0 3px var(--accent-soft);
+    background:var(--accent-soft);
+  }
+  .avatar.fallback{
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent);font-weight:800;font-size:22px;
+  }
+  .card .who h3{font-size:16.5px;font-weight:800;color:var(--navy);line-height:1.25}
+  .card .who .club{font-size:12.5px;color:var(--navy);margin-top:4px;font-weight:600}
+
+  .contact{display:flex;flex-direction:column;gap:11px;position:relative;z-index:2}
+  .contact .row{display:flex;align-items:center;gap:11px;font-size:13px;color:#334155}
+  .contact .row .ic{
+    width:18px;height:18px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent);
+  }
+  .contact .row .ic svg{width:17px;height:17px}
+  .contact .row a{color:#334155;text-decoration:none}
+  .contact .row a:hover{color:var(--accent);text-decoration:underline}
+  .contact .row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* empty state */
+  .empty{
+    grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);
+  }
+  .empty svg{color:#c3cee0;margin-bottom:14px}
+  .empty h3{color:var(--navy);font-size:22px;margin-bottom:6px;font-family:"Playfair Display",serif}
+
+  /* ============ FOOTER ============ */
+  footer{background:#00155e;color:#dbe4f3}
+  footer .wrap{display:flex;align-items:center;gap:22px;padding:18px 28px;flex-wrap:wrap}
+  footer .footer-logo{height:100px;width:auto;display:block;flex:none}
+  footer .motto{font-style:italic;color:#cdd9ef;font-size:14.5px;border-left:1px solid #2a4a82;padding-left:22px}
+  footer .social{margin-left:auto;display:flex;gap:9px}
+  footer .social a{
+    width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.10);color:#dbe4f3;transition:background .15s,color .15s,transform .15s;
+  }
+  footer .social a:hover{background:var(--rotary-gold);color:#00155e;transform:translateY(-2px)}
+  footer .copy{font-size:12.5px;color:#9fb1d4;white-space:nowrap}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1080px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .searchbar{grid-template-columns:1fr 1fr;}
+    .searchbar.members-bar{grid-template-columns:1fr 1fr}
+    .searchbar .search-main{grid-column:1/-1}
+  }
+  @media (max-width:760px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .searchbar{grid-template-columns:1fr;margin-top:-40px}
+    .searchbar.members-bar{grid-template-columns:1fr}
+    footer .wrap{flex-direction:column;align-items:flex-start;gap:16px}
+    footer .motto{border-left:0;padding-left:0}
+    footer .social{margin-left:0}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+  }
+
+  /* ============ STATS ROW (classifications view) ============ */
+  .stats{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px 0 24px;flex-wrap:wrap}
+  .stats .orn{display:flex;align-items:center;gap:6px;color:var(--rotary-gold)}
+  .stats .orn .bar{height:2px;width:40px;background:linear-gradient(90deg,transparent,var(--rotary-gold))}
+  .stats .orn.r .bar{background:linear-gradient(90deg,var(--rotary-gold),transparent)}
+  .stat{display:flex;align-items:center;gap:12px;padding:0 30px}
+  .stat .sicon{width:30px;height:30px;flex:none}
+  .stat.mem .sicon{color:var(--rotary-azure)}
+  .stat.cls .sicon{color:var(--c-purple)}
+  .stat .txt{display:flex;align-items:baseline;gap:7px}
+  .stat .num{font-size:24px;font-weight:800;color:var(--navy);line-height:1}
+  .stat.mem .num{color:var(--rotary-azure)}
+  .stat.cls .num{color:var(--c-purple)}
+  .stat .lbl{font-size:14px;font-weight:600;color:var(--muted)}
+  .vline{width:1px;height:36px;background:var(--line)}
+
+  /* ============ CLASSIFICATION CARDS ============ */
+  .ccard{
+    display:flex;align-items:center;gap:15px;
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:16px 18px;box-shadow:var(--shadow-sm);cursor:pointer;
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    text-align:left;width:100%;font:inherit;
+  }
+  .ccard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,#fff)}
+  .ccard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .ccard .cicon{
+    width:54px;height:54px;border-radius:15px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--accent);background:linear-gradient(135deg,var(--accent-soft),#fff);
+    box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 14%,#fff);
+  }
+  .ccard .cmeta{min-width:0;display:flex;flex-direction:column}
+  .ccard .cmeta .nm{font-size:15.5px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ccard .cmeta .cnt{font-size:13px;color:var(--muted);margin-top:4px}
+  .ccard .cmeta .cnt b{color:var(--accent);font-weight:800}
+  .ccard .cgo{margin-left:auto;color:#c3cee0;flex:none;transition:transform .16s,color .16s}
+  .ccard:hover .cgo{color:var(--accent);transform:translateX(3px)}
+
+  /* ============ BACK BUTTON ============ */
+  .backbtn{
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    border:1px solid var(--line);background:#fff;border-radius:11px;
+    padding:9px 16px;font:inherit;font-weight:600;font-size:14px;color:var(--rotary-blue);
+    box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s;
+  }
+  .backbtn:hover{transform:translateX(-3px);box-shadow:var(--shadow)}
+
+  [hidden]{display:none !important}
+</style>
+</head>
+<body class="is-class">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand">
+        <img class="brand-logo" src="logo_wg_t.png" alt="Rotary District 3080" />
+      </div>
+
+      <div class="hero-title">
+        <h1 id="heroTitle">Our Classifications</h1>
+        <div class="divider" aria-hidden="true"><span class="ln"></span><span class="dot"></span><span class="ln r"></span></div>
+        <p id="heroSub">Explore professional classifications represented across Rotary District 3080</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================= -->
+  <!-- ============ VIEW 1 : CLASSIFICATIONS ================= -->
+  <!-- ======================================================= -->
+  <section id="viewClass">
+    <div class="wrap">
+      <div class="searchbar" role="search">
+        <label class="field search-main">
+          <svg class="lead" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="cq" type="search" autocomplete="off" placeholder="Search classification name…" aria-label="Search classifications" />
+          <button class="mic" id="cMicBtn" type="button" aria-label="Voice search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+          </button>
+        </label>
+
+        <label class="field select-field">
+          <svg class="lead club" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
+          <select id="cClubFilter" aria-label="Filter by club"><option value="">All Clubs</option></select>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+
+        <label class="field select-field">
+          <svg class="lead" style="color:var(--rotary-azure)" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/></svg>
+          <select id="cCountFilter" aria-label="Filter by member count">
+            <option value="">All Member Counts</option>
+            <option value="lt30">Fewer than 30 members</option>
+            <option value="30-40">30 – 40 members</option>
+            <option value="gt40">More than 40 members</option>
+          </select>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="stats">
+        <span class="orn"><span class="bar"></span>◆</span>
+        <div class="stat mem">
+          <svg class="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="txt"><span class="num" id="memTotal">0</span><span class="lbl" id="memLbl">Members</span></span>
+        </div>
+        <span class="vline"></span>
+        <div class="stat cls">
+          <svg class="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          <span class="txt"><span class="num" id="clsTotal">0</span><span class="lbl" id="clsLbl">Classifications</span></span>
+        </div>
+        <span class="orn r">◆<span class="bar"></span></span>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section class="grid" id="cGrid" aria-live="polite" style="margin-bottom:50px"></section>
+    </main>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- ============ VIEW 2 : MEMBERS ========================= -->
+  <!-- ======================================================= -->
+  <section id="viewMembers" hidden>
+    <div class="wrap">
+      <div class="searchbar members-bar" role="search" style="margin-top:14px">
+        <label class="field search-main">
+          <svg class="lead" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" type="search" autocomplete="off"
+                 placeholder="Search by name, club, classification, email or mobile…"
+                 aria-label="Search members" />
+          <button class="mic" id="micBtn" type="button" aria-label="Voice search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+          </button>
+        </label>
+
+        <label class="field select-field">
+          <svg class="lead club" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
+          <select id="clubFilter" aria-label="Filter by club"><option value="">All Clubs</option></select>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+
+        <label class="field select-field">
+          <svg class="lead tag" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          <select id="classFilter" aria-label="Filter by classification"><option value="">All Classifications</option></select>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+
+        <button class="backbtn" id="backBtn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          All Classifications
+        </button>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="count">
+        <span class="orn"><span class="bar"></span>◆</span>
+        <span class="label"><b id="countNum">0</b> <span id="countLbl">Members</span></span>
+        <span class="orn r">◆<span class="bar"></span></span>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section class="grid" id="grid" aria-live="polite" style="margin-bottom:40px"></section>
+    </main>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <img class="footer-logo" src="logo_white.png" alt="Rotary District 3080" />
+      <span class="motto">Service Above Self</span>
+      <nav class="social" aria-label="Social media">
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6.8l-4.7-6.2L4.9 22H2l7-8L2 2h6.9l4.3 5.7L18.2 2zm-2.4 18h1.9L8.3 4H6.3l9.5 16z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+      </nav>
+      <span class="copy">© 2024 Rotary District 3080. All rights reserved.</span>
+    </div>
+  </footer>
+
+<script>
+/* ============================================================
+   Rotary gearwheel emblem injected wherever __GEAR__ appears
+   ============================================================ */
+const GEAR_SVG = `
+<svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true">
+  <g transform="translate(32,32)">
+    <g fill="#17458f">
+      ${Array.from({length:24},(_,i)=>{const a=i*15*Math.PI/180;const x=Math.cos(a),y=Math.sin(a);
+        return `<rect x="-2" y="-31" width="4" height="8" rx="1.4" transform="rotate(${i*15})"/>`;}).join("")}
+    </g>
+    <circle r="23" fill="#f7a81b"/>
+    <circle r="17" fill="#17458f"/>
+    <circle r="11" fill="#f7a81b"/>
+    <rect x="-1.6" y="-11" width="3.2" height="22" fill="#17458f"/>
+  </g>
+</svg>`;
+
+/* ============================================================
+   Classification icon library (Lucide-style line glyphs)
+   ============================================================ */
+const ICONS = {
+  calculator:`<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>`,
+  sprout:`<path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>`,
+  ruler:`<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/>`,
+  car:`<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>`,
+  plane:`<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>`,
+  landmark:`<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>`,
+  flask:`<path d="M10 2v7.3a2 2 0 0 1-.2.9L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5l-5.1-10.3a2 2 0 0 1-.2-.9V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/>`,
+  briefcase:`<rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
+  receipt:`<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-8M16 12H8M13 16H8"/>`,
+  hardhat:`<path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M14 6a6 6 0 0 1 6 6v3"/>`,
+  hammer:`<path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9"/><path d="M17.64 15 22 10.64"/><path d="m20.9 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/>`,
+  scale:`<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>`,
+  megaphone:`<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>`,
+  cap:`<path d="M21.4 10.9a1 1 0 0 0 0-1.8L12.8 5.2a2 2 0 0 0-1.6 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.6 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>`,
+  cpu:`<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>`,
+  wrench:`<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`,
+  calendar:`<path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>`,
+  trending:`<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>`,
+  heart:`<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>`,
+  utensils:`<path d="M3 2v7c0 1.1.9 2 2 2a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>`,
+  users:`<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  monitor:`<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>`,
+  shield:`<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>`,
+  newspaper:`<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>`,
+  truck:`<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>`,
+  factory:`<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1M12 18h1M7 18h1"/>`,
+  target:`<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>`,
+  pill:`<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>`,
+  camera:`<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>`,
+  home:`<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+  bag:`<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>`,
+  code:`<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  wifi:`<path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.86a10 10 0 0 1 14 0"/><path d="M8.5 16.43a5 5 0 0 1 7 0"/>`,
+  shirt:`<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>`,
+  map:`<path d="M14.1 5.55a2 2 0 0 0 1.8 0l3.66-1.83A1 1 0 0 1 21 4.62v12.76a1 1 0 0 1-.55.9l-4.55 2.27a2 2 0 0 1-1.8 0l-4.2-2.1a2 2 0 0 0-1.8 0l-3.66 1.83A1 1 0 0 1 3 19.38V6.62a1 1 0 0 1 .55-.9l4.55-2.27a2 2 0 0 1 1.8 0zM15 5.76v15M9 3.24v15"/>`,
+  layout:`<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/>`,
+  tag:`<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/>`
+};
+
+/* ============================================================
+   Classifications (alphabetical) — name, icon, accent colour
+   ============================================================ */
+const CLASSIFICATIONS = [
+  {name:"Accounting",icon:"calculator",accent:"blue"},
+  {name:"Agriculture",icon:"sprout",accent:"green"},
+  {name:"Architecture",icon:"ruler",accent:"orange"},
+  {name:"Automobile Industry",icon:"car",accent:"pink"},
+  {name:"Aviation",icon:"plane",accent:"teal"},
+  {name:"Banking & Finance",icon:"landmark",accent:"blue"},
+  {name:"Biotechnology",icon:"flask",accent:"green"},
+  {name:"Business Consulting",icon:"briefcase",accent:"purple"},
+  {name:"Chartered Accountancy",icon:"receipt",accent:"teal"},
+  {name:"Civil Engineering",icon:"hardhat",accent:"amber"},
+  {name:"Construction",icon:"hammer",accent:"orange"},
+  {name:"Corporate Law",icon:"scale",accent:"purple"},
+  {name:"Digital Marketing",icon:"megaphone",accent:"pink"},
+  {name:"Education",icon:"cap",accent:"blue"},
+  {name:"Electronics",icon:"cpu",accent:"purple"},
+  {name:"Engineering",icon:"wrench",accent:"amber"},
+  {name:"Event Management",icon:"calendar",accent:"pink"},
+  {name:"Finance",icon:"trending",accent:"green"},
+  {name:"Healthcare",icon:"heart",accent:"pink"},
+  {name:"Hospitality",icon:"utensils",accent:"orange"},
+  {name:"Human Resources",icon:"users",accent:"teal"},
+  {name:"Information Technology",icon:"monitor",accent:"blue"},
+  {name:"Insurance",icon:"shield",accent:"green"},
+  {name:"Journalism",icon:"newspaper",accent:"purple"},
+  {name:"Logistics",icon:"truck",accent:"blue"},
+  {name:"Manufacturing",icon:"factory",accent:"orange"},
+  {name:"Marketing",icon:"target",accent:"pink"},
+  {name:"Pharmaceuticals",icon:"pill",accent:"green"},
+  {name:"Photography",icon:"camera",accent:"purple"},
+  {name:"Real Estate",icon:"home",accent:"orange"},
+  {name:"Retail",icon:"bag",accent:"pink"},
+  {name:"Software Development",icon:"code",accent:"blue"},
+  {name:"Telecommunications",icon:"wifi",accent:"teal"},
+  {name:"Textiles",icon:"shirt",accent:"amber"},
+  {name:"Tourism",icon:"map",accent:"green"},
+  {name:"Web Design",icon:"layout",accent:"purple"}
+].sort((a,b)=>a.name.localeCompare(b.name));
+
+/* ============================================================
+   Deterministic data generation — 1,285 members
+   ============================================================ */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const rnd = mulberry32(30801285);
+const pick = arr => arr[Math.floor(rnd()*arr.length)];
+
+const firstM=["Amit","Rajesh","Sandeep","Vikram","Arjun","Rohan","Suresh","Anil","Manish","Deepak","Karthik","Nikhil","Rahul","Vivek","Sanjay","Aditya","Harish","Pranav","Gaurav","Mohit"];
+const firstF=["Priya","Neha","Anjali","Meera","Pooja","Sneha","Kavya","Divya","Ritu","Shruti","Aishwarya","Nisha","Swati","Ananya","Lakshmi","Radhika","Sonia","Kiran","Madhuri","Tanvi"];
+const last=["Sharma","Iyer","Mehta","Gupta","Bansal","Desai","Nair","Kulkarni","Patel","Reddy","Joshi","Verma","Rao","Kapoor","Shah","Menon","Pillai","Deshmukh","Bhat","Naik","Hegde","Kamath","Shetty","Pai"];
+const clubs=["Rotary Club of Pune Central","Rotary Club of Bangalore South","Rotary Club of Mumbai West","Rotary Club of Nagpur","Rotary Club of Ahmedabad East","Rotary Club of Surat","Rotary Club of Kolhapur","Rotary Club of Nashik","Rotary Club of Goa","Rotary Club of Belgaum","Rotary Club of Sangli","Rotary Club of Solapur"];
+const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const accents=["blue","purple","teal","pink","green","orange","amber"];
+
+const TOTAL = 1285;
+const MEMBERS = [];
+for(let i=0;i<TOTAL;i++){
+  const female = rnd()<0.5;
+  const fn = female?pick(firstF):pick(firstM);
+  const ln = pick(last);
+  const name = `${fn} ${ln}`;
+  const club = pick(clubs);
+  const cls = pick(CLASSIFICATIONS).name;
+  const phone = `+91 ${90+Math.floor(rnd()*10)}${Math.floor(10000+rnd()*89999)} ${Math.floor(10000+rnd()*89999)}`.slice(0,17);
+  const email = `${fn}.${ln}`.toLowerCase()+`@example.com`;
+  const dob = `${Math.floor(1+rnd()*28)} ${pick(months)} ${1965+Math.floor(rnd()*40)}`;
+  MEMBERS.push({
+    name, club, cls, phone, email, dob, female,
+    initials:(fn[0]+ln[0]).toUpperCase(),
+    accent:accents[i%accents.length],
+    photo:`https://i.pravatar.cc/120?img=${1+(i%70)}`
+  });
+}
+
+/* total members per classification (for stable counts) */
+const totalByClass={};
+MEMBERS.forEach(m=>totalByClass[m.cls]=(totalByClass[m.cls]||0)+1);
+function classCount(name,club){
+  if(!club) return totalByClass[name]||0;
+  let n=0; for(const m of MEMBERS) if(m.cls===name && m.club===club) n++;
+  return n;
+}
+
+/* populate filter dropdowns */
+const clubSel=document.getElementById('clubFilter');
+const classSel=document.getElementById('classFilter');
+const cClubSel=document.getElementById('cClubFilter');
+[...clubs].sort().forEach(c=>{
+  clubSel.insertAdjacentHTML('beforeend',`<option>${c}</option>`);
+  cClubSel.insertAdjacentHTML('beforeend',`<option>${c}</option>`);
+});
+CLASSIFICATIONS.forEach(c=>classSel.insertAdjacentHTML('beforeend',`<option>${c.name}</option>`));
+
+const fmt=n=>n.toLocaleString('en-IN');
+function emptyHTML(title,sub){
+  return `<div class="empty">
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <h3>${title}</h3><p>${sub}</p></div>`;
+}
+
+/* ============================================================
+   Card SVG bits
+   ============================================================ */
+/* dotted triangle bottom-right (rows shrink toward the corner) */
+const dotsSVG=`<svg class="dots" width="56" height="40" viewBox="0 0 56 40" fill="currentColor" aria-hidden="true">
+  ${[7,6,5,4].map((cols,r)=>Array.from({length:cols},(_,c)=>`<circle cx="${52-c*8}" cy="${4+r*11}" r="2"/>`).join("")).join("")}
+</svg>`;
+/* layered accent waves bottom-left */
+const waveSVG=`<svg class="wave" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 52 Q40 18 90 42 T200 36 V100 H0 Z" fill="currentColor" opacity=".10"/>
+  <path d="M0 70 Q45 40 100 64 T210 60 V100 H0 Z" fill="currentColor" opacity=".16"/>
+  <path d="M0 88 Q50 64 110 84 T220 82 V100 H0 Z" fill="currentColor" opacity=".22"/>
+</svg>`;
+const wmSVG=`<span class="watermark">${GEAR_SVG}</span>`;
+
+const IC = {
+  phone:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>`,
+  mail:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>`,
+  tag:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>`,
+  cal:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`
+};
+
+function cardHTML(m){
+  return `<article class="card" style="--accent:var(--c-${m.accent});--accent-soft:var(--c-${m.accent}-soft)">
+    ${waveSVG}${wmSVG}${dotsSVG}
+    <div class="head">
+      <img class="avatar" src="${m.photo}" alt="Photo of Rtn. ${m.name}" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar fallback&quot;>${m.initials}</div>'"/>
+      <div class="who">
+        <h3>Rtn. ${m.name}</h3>
+        <div class="club">${m.club}</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div class="row"><span class="ic">${IC.phone}</span><a href="tel:${m.phone.replace(/\s/g,'')}">${m.phone}</a></div>
+      <div class="row"><span class="ic">${IC.mail}</span><a href="mailto:${m.email}"><span>${m.email}</span></a></div>
+      <div class="row"><span class="ic">${IC.tag}</span><span>${m.cls}</span></div>
+      <div class="row"><span class="ic">${IC.cal}</span><span>${m.dob}</span></div>
+    </div>
+  </article>`;
+}
+
+/* classification card */
+function ccardHTML(c){
+  return `<button class="ccard" type="button" data-cls="${c.name}"
+            style="--accent:var(--c-${c.accent});--accent-soft:var(--c-${c.accent}-soft)">
+    <span class="cicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[c.icon]||ICONS.tag}</svg></span>
+    <span class="cmeta"><span class="nm">${c.name}</span><span class="cnt"><b>${c.count}</b> Members</span></span>
+    <svg class="cgo" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+  </button>`;
+}
+
+/* ============================================================
+   View 1 — classifications grid
+   ============================================================ */
+const cGrid=document.getElementById('cGrid');
+const cqInput=document.getElementById('cq');
+const cCountSel=document.getElementById('cCountFilter');
+const memTotalEl=document.getElementById('memTotal');
+const clsTotalEl=document.getElementById('clsTotal');
+
+function applyClass(){
+  const q=cqInput.value.trim().toLowerCase();
+  const club=cClubSel.value, bucket=cCountSel.value;
+  let memSum=0; const list=[];
+  for(const c of CLASSIFICATIONS){
+    const count=classCount(c.name,club);
+    if(club && count===0) continue;
+    if(q && !c.name.toLowerCase().includes(q)) continue;
+    if(bucket==='lt30' && !(count<30)) continue;
+    if(bucket==='30-40' && !(count>=30&&count<=40)) continue;
+    if(bucket==='gt40' && !(count>40)) continue;
+    list.push({...c,count}); memSum+=count;
+  }
+  memTotalEl.textContent=fmt(memSum);
+  clsTotalEl.textContent=fmt(list.length);
+  document.getElementById('memLbl').textContent = memSum===1 ? 'Member' : 'Members';
+  document.getElementById('clsLbl').textContent = list.length===1 ? 'Classification' : 'Classifications';
+  cGrid.innerHTML = list.length ? list.map(ccardHTML).join('')
+    : emptyHTML('No classifications found','Try a different name, club or member count.');
+}
+
+cGrid.addEventListener('click',e=>{
+  const b=e.target.closest('.ccard');
+  if(b) location.hash='c='+encodeURIComponent(b.dataset.cls);
+});
+
+let ct;
+cqInput.addEventListener('input',()=>{clearTimeout(ct);ct=setTimeout(applyClass,180);});
+cClubSel.addEventListener('change',applyClass);
+cCountSel.addEventListener('change',applyClass);
+
+/* ============================================================
+   View 2 — members grid
+   ============================================================ */
+const grid=document.getElementById('grid');
+const countNum=document.getElementById('countNum');
+const qInput=document.getElementById('q');
+let filtered=MEMBERS;
+
+function applyFilters(){
+  const q=qInput.value.trim().toLowerCase();
+  const club=clubSel.value, cls=classSel.value;
+  filtered=MEMBERS.filter(m=>{
+    if(club && m.club!==club) return false;
+    if(cls && m.cls!==cls) return false;
+    if(q){
+      const hay=`${m.name} ${m.club} ${m.cls} ${m.email} ${m.phone}`.toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  countNum.textContent=fmt(filtered.length);
+  document.getElementById('countLbl').textContent = filtered.length===1 ? 'Member' : 'Members';
+  grid.innerHTML='';
+  if(filtered.length===0){
+    grid.innerHTML=emptyHTML('No members found','Try a different name, club or classification.');
+    return;
+  }
+  grid.insertAdjacentHTML('beforeend',filtered.map(cardHTML).join(''));
+}
+
+let t;
+qInput.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(applyFilters,200);});
+clubSel.addEventListener('change',applyFilters);
+classSel.addEventListener('change',()=>{
+  applyFilters();
+  heroSub.textContent = classSel.value ? `Members in the ${classSel.value} classification`
+                                       : 'Explore and connect with Rotary members from District 3080';
+});
+
+/* voice search (both views) */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function wireMic(btnId,input,cb){
+  document.getElementById(btnId).addEventListener('click',()=>{
+    if(!SR){alert('Voice search is not supported in this browser. Please type your query.');return;}
+    const r=new SR();r.lang='en-IN';r.interimResults=false;
+    r.onresult=e=>{input.value=e.results[0][0].transcript;cb();};
+    r.start();
+  });
+}
+wireMic('micBtn',qInput,applyFilters);
+wireMic('cMicBtn',cqInput,applyClass);
+
+/* ============================================================
+   Routing : #  -> classifications ,  #c=<name> -> members
+   ============================================================ */
+const heroTitle=document.getElementById('heroTitle');
+const heroSub=document.getElementById('heroSub');
+const viewClass=document.getElementById('viewClass');
+const viewMembers=document.getElementById('viewMembers');
+
+function showClass(){
+  document.body.className='is-class';
+  heroTitle.textContent='Our Classifications';
+  heroSub.textContent='Explore professional classifications represented across Rotary District 3080';
+  viewMembers.hidden=true; viewClass.hidden=false;
+  window.scrollTo({top:0});
+}
+function showMembers(clsName){
+  document.body.className='is-members';
+  heroTitle.textContent='Our Members';
+  heroSub.textContent = clsName ? `Members in the ${clsName} classification`
+                                : 'Explore and connect with Rotary members from District 3080';
+  classSel.value = clsName && CLASSIFICATIONS.some(c=>c.name===clsName) ? clsName : '';
+  clubSel.value=''; qInput.value='';
+  viewClass.hidden=true; viewMembers.hidden=false;
+  applyFilters();
+  window.scrollTo({top:0});
+}
+function route(){
+  const h=decodeURIComponent(location.hash.replace(/^#/,''));
+  if(h.startsWith('c=')) showMembers(h.slice(2));
+  else showClass();
+}
+document.getElementById('backBtn').addEventListener('click',()=>{location.hash='';});
+window.addEventListener('hashchange',route);
+
+/* init */
+applyClass();
+route();
+</script>
+</body>
+</html>
