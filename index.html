@@ -247,7 +247,7 @@
     .grid{grid-template-columns:1fr}
   }
 
-  /* ============ STATS ROW (classifications view) ============ */
+  /* ============ STATS ROW (vocations view) ============ */
   .stats{display:flex;align-items:center;justify-content:center;gap:10px;margin:26px 0 24px;flex-wrap:wrap}
   .stats .orn{display:flex;align-items:center;gap:6px;color:var(--rotary-gold)}
   .stats .orn .bar{height:2px;width:40px;background:linear-gradient(90deg,transparent,var(--rotary-gold))}
@@ -255,15 +255,15 @@
   .stat{display:flex;align-items:center;gap:12px;padding:0 30px}
   .stat .sicon{width:30px;height:30px;flex:none}
   .stat.mem .sicon{color:var(--rotary-azure)}
-  .stat.cls .sicon{color:var(--c-purple)}
+  .stat.voc .sicon{color:var(--c-purple)}
   .stat .txt{display:flex;align-items:baseline;gap:7px}
   .stat .num{font-size:24px;font-weight:800;color:var(--navy);line-height:1}
   .stat.mem .num{color:var(--rotary-azure)}
-  .stat.cls .num{color:var(--c-purple)}
+  .stat.voc .num{color:var(--c-purple)}
   .stat .lbl{font-size:14px;font-weight:600;color:var(--muted)}
   .vline{width:1px;height:36px;background:var(--line)}
 
-  /* ============ CLASSIFICATION CARDS ============ */
+  /* ============ VOCATION CARDS ============ */
   .ccard{
     display:flex;align-items:center;gap:15px;
     background:#fff;border:1px solid var(--line);border-radius:16px;
@@ -316,7 +316,7 @@
   </header>
 
   <!-- ======================================================= -->
-  <!-- ============ VIEW 1 : CLASSIFICATIONS ================= -->
+  <!-- ============ VIEW 1 : VOCATIONS ================= -->
   <!-- ======================================================= -->
   <section id="viewClass">
     <div class="wrap">
@@ -356,9 +356,9 @@
           <span class="txt"><span class="num" id="memTotal">0</span><span class="lbl" id="memLbl">Members</span></span>
         </div>
         <span class="vline"></span>
-        <div class="stat cls">
+        <div class="stat voc">
           <svg class="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-          <span class="txt"><span class="num" id="clsTotal">0</span><span class="lbl" id="clsLbl">Vocations</span></span>
+          <span class="txt"><span class="num" id="vocTotal">0</span><span class="lbl" id="vocLbl">Vocations</span></span>
         </div>
         <span class="orn r">◆<span class="bar"></span></span>
       </div>
@@ -393,7 +393,7 @@
 
         <label class="field select-field">
           <svg class="lead tag" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-          <select id="classFilter" aria-label="Filter by vocation"><option value="">All Vocations</option></select>
+          <select id="vocationFilter" aria-label="Filter by vocation"><option value="">All Vocations</option></select>
           <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </label>
 
@@ -445,7 +445,7 @@ const GEAR_SVG = `
 </svg>`;
 
 /* ============================================================
-   Classification icon library (Lucide-style line glyphs)
+   Vocation icon library (Lucide-style line glyphs)
    ============================================================ */
 const ICONS = {
   calculator:`<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>`,
@@ -488,9 +488,9 @@ const ICONS = {
 };
 
 /* ============================================================
-   Classifications (alphabetical) — name, icon, accent colour
+   Vocations (alphabetical) — name, icon, accent colour
    ============================================================ */
-const CLASSIFICATIONS = [
+const VOCATIONS = [
   {name:"Accounting",icon:"calculator",accent:"blue"},
   {name:"Agriculture",icon:"sprout",accent:"green"},
   {name:"Architecture",icon:"ruler",accent:"orange"},
@@ -551,36 +551,36 @@ for(let i=0;i<TOTAL;i++){
   const ln = pick(last);
   const name = `${fn} ${ln}`;
   const club = pick(clubs);
-  const cls = pick(CLASSIFICATIONS).name;
+  const vocation = pick(VOCATIONS).name;
   const phone = `+91 ${90+Math.floor(rnd()*10)}${Math.floor(10000+rnd()*89999)} ${Math.floor(10000+rnd()*89999)}`.slice(0,17);
   const email = `${fn}.${ln}`.toLowerCase()+`@example.com`;
   const dob = `${Math.floor(1+rnd()*28)} ${pick(months)} ${1965+Math.floor(rnd()*40)}`;
   MEMBERS.push({
-    name, club, cls, phone, email, dob, female,
+    name, club, vocation, phone, email, dob, female,
     initials:(fn[0]+ln[0]).toUpperCase(),
     accent:accents[i%accents.length],
     photo:`https://i.pravatar.cc/120?img=${1+(i%70)}`
   });
 }
 
-/* total members per classification (for stable counts) */
-const totalByClass={};
-MEMBERS.forEach(m=>totalByClass[m.cls]=(totalByClass[m.cls]||0)+1);
-function classCount(name,club){
-  if(!club) return totalByClass[name]||0;
-  let n=0; for(const m of MEMBERS) if(m.cls===name && m.club===club) n++;
+/* total members per vocation (for stable counts) */
+const totalByVocation={};
+MEMBERS.forEach(m=>totalByVocation[m.vocation]=(totalByVocation[m.vocation]||0)+1);
+function vocationCount(name,club){
+  if(!club) return totalByVocation[name]||0;
+  let n=0; for(const m of MEMBERS) if(m.vocation===name && m.club===club) n++;
   return n;
 }
 
 /* populate filter dropdowns */
 const clubSel=document.getElementById('clubFilter');
-const classSel=document.getElementById('classFilter');
+const vocationSel=document.getElementById('vocationFilter');
 const cClubSel=document.getElementById('cClubFilter');
 [...clubs].sort().forEach(c=>{
   clubSel.insertAdjacentHTML('beforeend',`<option>${c}</option>`);
   cClubSel.insertAdjacentHTML('beforeend',`<option>${c}</option>`);
 });
-CLASSIFICATIONS.forEach(c=>classSel.insertAdjacentHTML('beforeend',`<option>${c.name}</option>`));
+VOCATIONS.forEach(c=>vocationSel.insertAdjacentHTML('beforeend',`<option>${c.name}</option>`));
 
 const fmt=n=>n.toLocaleString('en-IN');
 function emptyHTML(title,sub){
@@ -625,15 +625,15 @@ function cardHTML(m){
     <div class="contact">
       <div class="row"><span class="ic">${IC.phone}</span><a href="tel:${m.phone.replace(/\s/g,'')}">${m.phone}</a></div>
       <div class="row"><span class="ic">${IC.mail}</span><a href="mailto:${m.email}"><span>${m.email}</span></a></div>
-      <div class="row"><span class="ic">${IC.tag}</span><span>${m.cls}</span></div>
+      <div class="row"><span class="ic">${IC.tag}</span><span>${m.vocation}</span></div>
       <div class="row"><span class="ic">${IC.cal}</span><span>${m.dob}</span></div>
     </div>
   </article>`;
 }
 
-/* classification card */
+/* vocation card */
 function ccardHTML(c){
-  return `<button class="ccard" type="button" data-cls="${c.name}"
+  return `<button class="ccard" type="button" data-vocation="${c.name}"
             style="--accent:var(--c-${c.accent});--accent-soft:var(--c-${c.accent}-soft)">
     <span class="cicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[c.icon]||ICONS.tag}</svg></span>
     <span class="cmeta"><span class="nm">${c.name}</span><span class="cnt"><b>${c.count}</b> Members</span></span>
@@ -642,20 +642,20 @@ function ccardHTML(c){
 }
 
 /* ============================================================
-   View 1 — classifications grid
+   View 1 — vocations grid
    ============================================================ */
 const cGrid=document.getElementById('cGrid');
 const cqInput=document.getElementById('cq');
 const cCountSel=document.getElementById('cCountFilter');
 const memTotalEl=document.getElementById('memTotal');
-const clsTotalEl=document.getElementById('clsTotal');
+const vocTotalEl=document.getElementById('vocTotal');
 
-function applyClass(){
+function applyVocations(){
   const q=cqInput.value.trim().toLowerCase();
   const club=cClubSel.value, bucket=cCountSel.value;
   let memSum=0; const list=[];
-  for(const c of CLASSIFICATIONS){
-    const count=classCount(c.name,club);
+  for(const c of VOCATIONS){
+    const count=vocationCount(c.name,club);
     if(club && count===0) continue;
     if(q && !c.name.toLowerCase().includes(q)) continue;
     if(bucket==='lt30' && !(count<30)) continue;
@@ -664,22 +664,22 @@ function applyClass(){
     list.push({...c,count}); memSum+=count;
   }
   memTotalEl.textContent=fmt(memSum);
-  clsTotalEl.textContent=fmt(list.length);
+  vocTotalEl.textContent=fmt(list.length);
   document.getElementById('memLbl').textContent = memSum===1 ? 'Member' : 'Members';
-  document.getElementById('clsLbl').textContent = list.length===1 ? 'Vocation' : 'Vocations';
+  document.getElementById('vocLbl').textContent = list.length===1 ? 'Vocation' : 'Vocations';
   cGrid.innerHTML = list.length ? list.map(ccardHTML).join('')
     : emptyHTML('No vocations found','Try a different name, club or member count.');
 }
 
 cGrid.addEventListener('click',e=>{
   const b=e.target.closest('.ccard');
-  if(b) location.hash='c='+encodeURIComponent(b.dataset.cls);
+  if(b) location.hash='c='+encodeURIComponent(b.dataset.vocation);
 });
 
 let ct;
-cqInput.addEventListener('input',()=>{clearTimeout(ct);ct=setTimeout(applyClass,180);});
-cClubSel.addEventListener('change',applyClass);
-cCountSel.addEventListener('change',applyClass);
+cqInput.addEventListener('input',()=>{clearTimeout(ct);ct=setTimeout(applyVocations,180);});
+cClubSel.addEventListener('change',applyVocations);
+cCountSel.addEventListener('change',applyVocations);
 
 /* ============================================================
    View 2 — members grid
@@ -691,12 +691,12 @@ let filtered=MEMBERS;
 
 function applyFilters(){
   const q=qInput.value.trim().toLowerCase();
-  const club=clubSel.value, cls=classSel.value;
+  const club=clubSel.value, vocation=vocationSel.value;
   filtered=MEMBERS.filter(m=>{
     if(club && m.club!==club) return false;
-    if(cls && m.cls!==cls) return false;
+    if(vocation && m.vocation!==vocation) return false;
     if(q){
-      const hay=`${m.name} ${m.club} ${m.cls} ${m.email} ${m.phone}`.toLowerCase();
+      const hay=`${m.name} ${m.club} ${m.vocation} ${m.email} ${m.phone}`.toLowerCase();
       if(!hay.includes(q)) return false;
     }
     return true;
@@ -714,9 +714,9 @@ function applyFilters(){
 let t;
 qInput.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(applyFilters,200);});
 clubSel.addEventListener('change',applyFilters);
-classSel.addEventListener('change',()=>{
+vocationSel.addEventListener('change',()=>{
   applyFilters();
-  heroSub.textContent = classSel.value ? `Members in the ${classSel.value} vocation`
+  heroSub.textContent = vocationSel.value ? `Members in the ${vocationSel.value} vocation`
                                        : 'Explore and connect with Rotary members from District 3080';
 });
 
@@ -731,10 +731,10 @@ function wireMic(btnId,input,cb){
   });
 }
 wireMic('micBtn',qInput,applyFilters);
-wireMic('cMicBtn',cqInput,applyClass);
+wireMic('cMicBtn',cqInput,applyVocations);
 
 /* ============================================================
-   Routing : #  -> classifications ,  #c=<name> -> members
+   Routing : #  -> vocations ,  #c=<name> -> members
    ============================================================ */
 const heroTitle=document.getElementById('heroTitle');
 const heroSub=document.getElementById('heroSub');
@@ -748,12 +748,12 @@ function showClass(){
   viewMembers.hidden=true; viewClass.hidden=false;
   window.scrollTo({top:0});
 }
-function showMembers(clsName){
+function showMembers(vocationName){
   document.body.className='is-members';
   heroTitle.textContent='Our Members';
-  heroSub.textContent = clsName ? `Members in the ${clsName} vocation`
+  heroSub.textContent = vocationName ? `Members in the ${vocationName} vocation`
                                 : 'Explore and connect with Rotary members from District 3080';
-  classSel.value = clsName && CLASSIFICATIONS.some(c=>c.name===clsName) ? clsName : '';
+  vocationSel.value = vocationName && VOCATIONS.some(c=>c.name===vocationName) ? vocationName : '';
   clubSel.value=''; qInput.value='';
   viewClass.hidden=true; viewMembers.hidden=false;
   applyFilters();
@@ -768,7 +768,7 @@ document.getElementById('backBtn').addEventListener('click',()=>{location.hash='
 window.addEventListener('hashchange',route);
 
 /* init */
-applyClass();
+applyVocations();
 route();
 </script>
 </body>
