@@ -308,9 +308,9 @@
       </div>
 
       <div class="hero-title">
-        <h1 id="heroTitle">Our Classifications</h1>
+        <h1 id="heroTitle">Vocational Directory</h1>
         <div class="divider" aria-hidden="true"><span class="ln"></span><span class="dot"></span><span class="ln r"></span></div>
-        <p id="heroSub">Explore professional classifications represented across Rotary District 3080</p>
+        <p id="heroSub">Explore professional vocations represented across Rotary District 3080</p>
       </div>
     </div>
   </header>
@@ -323,7 +323,7 @@
       <div class="searchbar" role="search">
         <label class="field search-main">
           <svg class="lead" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-          <input id="cq" type="search" autocomplete="off" placeholder="Search classification name…" aria-label="Search classifications" />
+          <input id="cq" type="search" autocomplete="off" placeholder="Search vocation name…" aria-label="Search vocations" />
           <button class="mic" id="cMicBtn" type="button" aria-label="Voice search">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
           </button>
@@ -358,7 +358,7 @@
         <span class="vline"></span>
         <div class="stat cls">
           <svg class="sicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-          <span class="txt"><span class="num" id="clsTotal">0</span><span class="lbl" id="clsLbl">Classifications</span></span>
+          <span class="txt"><span class="num" id="clsTotal">0</span><span class="lbl" id="clsLbl">Vocations</span></span>
         </div>
         <span class="orn r">◆<span class="bar"></span></span>
       </div>
@@ -378,7 +378,7 @@
         <label class="field search-main">
           <svg class="lead" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           <input id="q" type="search" autocomplete="off"
-                 placeholder="Search by name, club, classification, email or mobile…"
+                 placeholder="Search by name, club, vocation, email or mobile…"
                  aria-label="Search members" />
           <button class="mic" id="micBtn" type="button" aria-label="Voice search">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
@@ -393,13 +393,13 @@
 
         <label class="field select-field">
           <svg class="lead tag" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
-          <select id="classFilter" aria-label="Filter by classification"><option value="">All Classifications</option></select>
+          <select id="classFilter" aria-label="Filter by vocation"><option value="">All Vocations</option></select>
           <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
         </label>
 
         <button class="backbtn" id="backBtn" type="button">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          All Classifications
+          All Vocations
         </button>
       </div>
     </div>
@@ -666,9 +666,9 @@ function applyClass(){
   memTotalEl.textContent=fmt(memSum);
   clsTotalEl.textContent=fmt(list.length);
   document.getElementById('memLbl').textContent = memSum===1 ? 'Member' : 'Members';
-  document.getElementById('clsLbl').textContent = list.length===1 ? 'Classification' : 'Classifications';
+  document.getElementById('clsLbl').textContent = list.length===1 ? 'Vocation' : 'Vocations';
   cGrid.innerHTML = list.length ? list.map(ccardHTML).join('')
-    : emptyHTML('No classifications found','Try a different name, club or member count.');
+    : emptyHTML('No vocations found','Try a different name, club or member count.');
 }
 
 cGrid.addEventListener('click',e=>{
@@ -705,7 +705,7 @@ function applyFilters(){
   document.getElementById('countLbl').textContent = filtered.length===1 ? 'Member' : 'Members';
   grid.innerHTML='';
   if(filtered.length===0){
-    grid.innerHTML=emptyHTML('No members found','Try a different name, club or classification.');
+    grid.innerHTML=emptyHTML('No members found','Try a different name, club or vocation.');
     return;
   }
   grid.insertAdjacentHTML('beforeend',filtered.map(cardHTML).join(''));
@@ -716,7 +716,7 @@ qInput.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(applyFilters,2
 clubSel.addEventListener('change',applyFilters);
 classSel.addEventListener('change',()=>{
   applyFilters();
-  heroSub.textContent = classSel.value ? `Members in the ${classSel.value} classification`
+  heroSub.textContent = classSel.value ? `Members in the ${classSel.value} vocation`
                                        : 'Explore and connect with Rotary members from District 3080';
 });
 
@@ -743,15 +743,15 @@ const viewMembers=document.getElementById('viewMembers');
 
 function showClass(){
   document.body.className='is-class';
-  heroTitle.textContent='Our Classifications';
-  heroSub.textContent='Explore professional classifications represented across Rotary District 3080';
+  heroTitle.textContent='Vocational Directory';
+  heroSub.textContent='Explore professional vocations represented across Rotary District 3080';
   viewMembers.hidden=true; viewClass.hidden=false;
   window.scrollTo({top:0});
 }
 function showMembers(clsName){
   document.body.className='is-members';
   heroTitle.textContent='Our Members';
-  heroSub.textContent = clsName ? `Members in the ${clsName} classification`
+  heroSub.textContent = clsName ? `Members in the ${clsName} vocation`
                                 : 'Explore and connect with Rotary members from District 3080';
   classSel.value = clsName && CLASSIFICATIONS.some(c=>c.name===clsName) ? clsName : '';
   clubSel.value=''; qInput.value='';
