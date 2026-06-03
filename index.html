@@ -803,130 +803,6 @@
               </svg>
             </button>
           </label>
-
-          <label class="field select-field">
-            <svg
-              class="lead club"
-              width="19"
-              height="19"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M3 21h18" />
-              <path d="M5 21V7l7-4 7 4v14" />
-              <path
-                d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"
-              />
-            </svg>
-            <select id="cClubFilter" aria-label="Filter by club">
-              <option value="">All Clubs</option>
-            </select>
-            <svg
-              class="chev"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </label>
-
-          <label class="field select-field">
-            <svg
-              class="lead"
-              style="color: var(--rotary-azure)"
-              width="19"
-              height="19"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="4" x2="4" y1="21" y2="14" />
-              <line x1="4" x2="4" y1="10" y2="3" />
-              <line x1="12" x2="12" y1="21" y2="12" />
-              <line x1="12" x2="12" y1="8" y2="3" />
-              <line x1="20" x2="20" y1="21" y2="16" />
-              <line x1="20" x2="20" y1="12" y2="3" />
-              <line x1="2" x2="6" y1="14" y2="14" />
-              <line x1="10" x2="14" y1="8" y2="8" />
-              <line x1="18" x2="22" y1="16" y2="16" />
-            </svg>
-            <select id="cCountFilter" aria-label="Filter by member count">
-              <option value="">All Member Counts</option>
-              <option value="lt30">Fewer than 30 members</option>
-              <option value="30-40">30 – 40 members</option>
-              <option value="gt40">More than 40 members</option>
-            </select>
-            <svg
-              class="chev"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </label>
-        </div>
-      </div>
-
-      <div class="wrap">
-        <div class="stats">
-          <span class="orn"><span class="bar"></span>◆</span>
-          <div class="stat mem">
-            <svg
-              class="sicon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-            <span class="txt"
-              ><span class="num" id="memTotal">0</span
-              ><span class="lbl" id="memLbl">Members</span></span
-            >
-          </div>
-          <span class="vline"></span>
-          <div class="stat voc">
-            <svg
-              class="sicon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"
-              />
-              <circle cx="7.5" cy="7.5" r="1.5" />
-            </svg>
-            <span class="txt"
-              ><span class="num" id="vocTotal">0</span
-              ><span class="lbl" id="vocLbl">Vocations</span></span
-            >
-          </div>
-          <span class="orn r">◆<span class="bar"></span></span>
         </div>
       </div>
 
@@ -1394,10 +1270,8 @@
       /* populate filter dropdowns */
       const clubSel = document.getElementById("clubFilter");
       const vocationSel = document.getElementById("vocationFilter");
-      const cClubSel = document.getElementById("cClubFilter");
       [...clubs].sort().forEach((c) => {
         clubSel.insertAdjacentHTML("beforeend", `<option>${c}</option>`);
-        cClubSel.insertAdjacentHTML("beforeend", `<option>${c}</option>`);
       });
       VOCATIONS.forEach((c) =>
         vocationSel.insertAdjacentHTML(
@@ -1470,38 +1344,17 @@
    ============================================================ */
       const cGrid = document.getElementById("cGrid");
       const cqInput = document.getElementById("cq");
-      const cCountSel = document.getElementById("cCountFilter");
-      const memTotalEl = document.getElementById("memTotal");
-      const vocTotalEl = document.getElementById("vocTotal");
 
       function applyVocations() {
         const q = cqInput.value.trim().toLowerCase();
-        const club = cClubSel.value,
-          bucket = cCountSel.value;
-        let memSum = 0;
         const list = [];
         for (const c of VOCATIONS) {
-          const count = vocationCount(c.name, club);
-          if (club && count === 0) continue;
           if (q && !c.name.toLowerCase().includes(q)) continue;
-          if (bucket === "lt30" && !(count < 30)) continue;
-          if (bucket === "30-40" && !(count >= 30 && count <= 40)) continue;
-          if (bucket === "gt40" && !(count > 40)) continue;
-          list.push({ ...c, count });
-          memSum += count;
+          list.push({ ...c, count: vocationCount(c.name, "") });
         }
-        memTotalEl.textContent = fmt(memSum);
-        vocTotalEl.textContent = fmt(list.length);
-        document.getElementById("memLbl").textContent =
-          memSum === 1 ? "Member" : "Members";
-        document.getElementById("vocLbl").textContent =
-          list.length === 1 ? "Vocation" : "Vocations";
         cGrid.innerHTML = list.length
           ? list.map(ccardHTML).join("")
-          : emptyHTML(
-              "No vocations found",
-              "Try a different name, club or member count.",
-            );
+          : emptyHTML("No vocations found", "Try a different name.");
       }
 
       cGrid.addEventListener("click", (e) => {
@@ -1514,8 +1367,6 @@
         clearTimeout(ct);
         ct = setTimeout(applyVocations, 180);
       });
-      cClubSel.addEventListener("change", applyVocations);
-      cCountSel.addEventListener("change", applyVocations);
 
       /* ============================================================
    View 2 — members grid
